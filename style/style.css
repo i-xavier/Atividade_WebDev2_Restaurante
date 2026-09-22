@@ -1,0 +1,820 @@
+/*
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor0: #B9A6DE;
+    --cor1: #F5D998;
+    --cor2: #5B4B7A;
+    --cor3: #F0938A;
+    --cor4: #FAF6ED;
+    --cor5: #f3ac06;Z
+}
+
+h1{
+    text-align: center;
+}
+
+.tituloSecao {
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--cor3);
+    position: relative;
+    text-shadow: #000 2px 2px;
+
+}
+
+#logo{
+    width: 70px;
+    
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    background-color: var(--cor2);
+    
+    align-items: center;
+    display: flex;
+    padding: 0;
+    z-index: 99;
+    
+    
+    
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 16x 20px;
+    
+    
+
+    ul {
+        display: flex;
+        list-style-type:  none;
+        gap: 50px;
+    }
+
+    li a{
+        text-decoration: none;
+        color: var(--cor4);
+        font-weight: bold;
+    }
+}
+
+.botoes{
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+#preview{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+#home{
+    padding-top: 70px;
+    background-position: center;
+    background-image: url(/img/bg.jpeg);
+    background-size: cover;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        margin-top: 40px;
+        align-items: center;
+        font-size: 90px;
+        color: var(--cor1)
+    }
+
+    p{
+        margin-top: 500px;
+    }
+}
+
+#menu{
+
+    width: 100%;
+}
+
+#localizacao{
+    
+
+    img{
+        width: 400px;
+    }
+}
+
+@media (max-width: 1024px) {
+    
+}*/
+
+/* 
+
+/* ==========================================================================
+   1. VARIÁVEIS E RESET GLOBAL
+   ========================================================================== */
+:root {
+  --cor0: #B9A6DE; /* Lilás suave */
+  --cor1: #F5D998; /* Amarelo pastel */
+  --cor2: #5B4B7A; /* Roxo escuro */
+  --cor3: #F0938A; /* Coral / Rosa */
+  --cor4: #FAF6ED; /* Off-white / Creme */
+  --cor5: #f3ac06; /* Amarelo ouro */
+
+  --bg-color: var(--cor4);
+  --text-dark: var(--cor2);
+  --text-muted: #7a6a99;
+  --text-light: #ffffff;
+  --border-color: #e5dccb;
+  --shadow: 0 4px 15px rgba(91, 75, 122, 0.08);
+  --shadow-hover: 0 8px 25px rgba(91, 75, 122, 0.18);
+  --radius: 12px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   ========================================================================== */
+header {
+  background-color: var(--cor2);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: var(--cor4);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: var(--cor1);
+}
+
+.botoes {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.botoes button {
+  background-color: var(--cor5);
+  color: var(--cor2);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.botoes button:hover {
+  background-color: var(--cor1);
+  transform: translateY(-2px);
+}
+
+.botoes a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================================================================
+   3. SEÇÕES E CONTEÚDO PRINCIPAL
+   ========================================================================== */
+#home {
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.tituloSecao {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor2);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+#home p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+}
+
+/* ==========================================================================
+   4. CARROSSEL DE DESTAQUES (HOME / INDEX)
+   ========================================================================== */
+#home .container {
+  position: relative;
+  padding: 0 3rem;
+  margin-top: 2rem;
+}
+
+/* Botões de Navegação (Setas) */
+#home .container > button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--cor2);
+  color: var(--cor4);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+#home .container > button:hover {
+  background-color: var(--cor5);
+  color: var(--cor2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+#home .container > .fa-arrow-left {
+  left: 0;
+}
+
+#home .container > .fa-arrow-right {
+  right: 0;
+}
+
+/* Wrapper com barra de rolagem oculta e rolagem suave */
+.carrossel-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0.5rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carrossel-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari e Edge */
+}
+
+/* Container flex dos cards no carrossel */
+#carrossel {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1.5rem;
+}
+
+/* Card individual dentro do carrossel */
+#carrossel .cardProd {
+  flex: 0 0 240px; /* Largura fixa para os cards no carrossel */
+  min-width: 240px;
+  text-align: left;
+}
+
+.imgCarrossel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nomeCarrossel {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor2);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.precoCarrossel {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--cor5);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.precoCarrossel::before {
+  content: "R$ ";
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.botoesCarrossel {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+
+.botoesCarrossel .fa-shopping-cart {
+  background-color: var(--cor5);
+  color: var(--cor2);
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botoesCarrossel .fa-shopping-cart:hover {
+  background-color: var(--cor1);
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   5. CARDÁPIO (GRID DE PRODUTOS)
+   ========================================================================== */
+#cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.cardProd {
+  background: #ffffff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cardProd:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.cardProd > span:first-child {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--cor4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardProd > span:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cardProd:hover > span:first-child img {
+  transform: scale(1.05);
+}
+
+.imgCardProd {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cor2);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.descricaoCardProd {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+  display: block;
+}
+
+.precoCardProd {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cor5);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.precoCardProd::before {
+  content: "R$ ";
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.categoriaCardProd {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--cor4);
+  color: var(--cor2);
+  border: 1px solid var(--cor0);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.botoesCardProd {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.botoesCardProd i {
+  font-size: 1rem;
+  padding: 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botoesCardProd .fa-edit {
+  background-color: var(--cor4);
+  color: var(--cor2);
+  border: 1px solid var(--border-color);
+}
+
+.botoesCardProd .fa-edit:hover {
+  background-color: var(--cor0);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.botoesCardProd .fa-trash-alt {
+  background-color: #fde8e6;
+  color: var(--cor3);
+}
+
+.botoesCardProd .fa-trash-alt:hover {
+  background-color: var(--cor3);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.botoesCardProd .fa-shopping-cart {
+  background-color: var(--cor5);
+  color: var(--cor2);
+  margin-left: auto;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+}
+
+.botoesCardProd .fa-shopping-cart:hover {
+  background-color: var(--cor1);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   6. TELA DE CARRINHO DE COMPRAS (#carrinho)
+   ========================================================================== */
+#carrinho {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 2.5rem auto 0 auto;
+  text-align: left;
+}
+
+.cardItemCarrinho {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cardItemCarrinho:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.cardItemCarrinho > span:first-child {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--cor4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardItemCarrinho .imgProd {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgCardItemCarrinho {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cor2);
+  flex: 2;
+}
+
+.descricaoCardItemCarrinho {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex: 3;
+}
+
+.precoCardItemCarrinho {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--cor5);
+  flex: 1.5;
+  text-align: right;
+}
+
+.precoCardItemCarrinho::before {
+  content: "R$ ";
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.categoriaCardItemCarrinho {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--cor4);
+  color: var(--cor2);
+  border: 1px solid var(--cor0);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+
+.botoesCardItemCarrinho {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-left: auto;
+}
+
+.controlQtdCardItemCarrinho {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--cor4);
+  border: 1px solid var(--cor0);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 700;
+  color: var(--cor2);
+}
+
+.controlQtdCardItemCarrinho i {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--cor2);
+  padding: 0.2rem;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.controlQtdCardItemCarrinho i:hover {
+  color: var(--cor5);
+  transform: scale(1.2);
+}
+
+.controlQtdCardItemCarrinho span {
+  min-width: 20px;
+  text-align: center;
+}
+
+.botoesCardItemCarrinho .fa-trash-alt {
+  color: var(--cor3);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.botoesCardItemCarrinho .fa-trash-alt:hover {
+  background-color: #fde8e6;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .cardItemCarrinho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .precoCardItemCarrinho {
+    text-align: left;
+  }
+
+  .botoesCardItemCarrinho {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   7. FORMULÁRIO DE LOGIN E MODAIS
+   ========================================================================== */
+#formLogin {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+#formLogin label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: var(--cor2);
+}
+
+#formLogin input[type="email"],
+#formLogin input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--cor4);
+}
+
+#formLogin input[type="email"]:focus,
+#formLogin input[type="password"]:focus {
+  outline: none;
+  border-color: var(--cor0);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(185, 166, 222, 0.3);
+}
+
+#formLogin input[type="submit"]:not(.btn) {
+  background-color: var(--cor2);
+  color: var(--cor4);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#formLogin input[type="submit"]:not(.btn):hover {
+  background-color: var(--cor5);
+  color: var(--cor2);
+}
+
+/* Modais Bootstrap */
+.modal-content {
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: var(--shadow);
+  background-color: #ffffff;
+}
+
+.modal-header {
+  background-color: var(--cor2);
+  color: var(--cor4);
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+.modal-body label {
+  font-weight: 600;
+  color: var(--cor2);
+  margin-top: 0.6rem;
+  display: inline-block;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="email"],
+.modal-body input[type="password"],
+.modal-body input[type="number"],
+.modal-body select,
+.modal-body textarea {
+  width: 100%;
+  padding: 0.65rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: var(--cor4);
+}
+
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus {
+  outline: none;
+  border-color: var(--cor0);
+  background-color: #ffffff;
+}
+
+.btn-primary {
+  background-color: var(--cor5) !important;
+  border-color: var(--cor5) !important;
+  color: var(--cor2) !important;
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background-color: var(--cor1) !important;
+  border-color: var(--cor1) !important;
+}
+
+.btn-secondary {
+  background-color: var(--cor2) !important;
+  border-color: var(--cor2) !important;
+  color: var(--cor4) !important;
+}
+
+#preview {
+  display: block;
+  max-width: 100%;
+  max-height: 150px;
+  margin: 0.8rem auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   8. RODAPÉ
+   ========================================================================== */
+footer {
+  background-color: var(--cor2);
+  height: 60px;
+  margin-top: auto;
+}

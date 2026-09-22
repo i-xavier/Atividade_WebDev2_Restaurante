@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style/style.css">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"
+        defer></script>
+    <script type="module" src="js/pages/cardapio.js" defer></script>
+
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+
+
+
+    <!-- Modal -->
+    <form class="modal fade" id="formCadastroProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Produto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="msg" class="text-danger fw-bold mb-3"></div>
+
+                    <label for="imagem-produto">Imagem do Produto:</label>
+                    <br>
+                    <select name="" id="inImagemProd">
+                        <option value="">selecione uma imagem</option>
+                        <option value="../assets/img/batata-frita.jpeg">1</option>
+                        <option value="../assets/img/casquinha.webp">2</option>
+                        <option value="../assets/img/coca.webp">3</option>
+                        <option value="../assets/img/guarana.jpg">4</option>
+                        <option value="../assets/img/suco.webp">5</option>
+                        <option value="../assets/img/hamburger.jpeg">6</option>
+                        <option value="../assets/img/hotdog.webp">7</option>
+                        <option value="../assets/img/onion-rings.jpg">8</option>
+                        <option value="../assets/img/pizza.jpg">9</option>
+                        <option value="../assets/img/torta.webp">10</option>
+
+                    </select>
+
+                    <img id="preview" src="">
+
+                    <br>
+
+                    <label for="nome-produto">Nome: </label>
+                    <br>
+                    <input type="text" id="inNomeProd" placeholder="Ex: Hamburguer de Siri">
+
+                    <br>
+
+                    <label for="descricao-produto">Descrição:</label>
+                    <br>
+                    <textarea type="text" id="inDescricaoProd"></textarea>
+
+                    <br>
+
+                    <label for="preco-produto">Preço:</label>
+                    <br>
+                    <input type="number" step="any" id="inPrecoProd">
+
+                    <br>
+
+                    <label for="categoria-produto">Categoria do Produto:</label>
+                    <br>
+                    <select name="" id="inCategoriaProd">
+                        <option value="">--Por favor escolha uma opção--</option>
+                        <option value="lanche">Lanche</option>
+                        <option value="acompanhamento">Acompanhamento</option>
+                        <option value="bebida">Bebida</option>
+                        <option value="sobremesa">Sobremesa</option>
+
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="" class="btn btn-secondary" data-bs-dismiss="modal" value="Close"></input>
+                    <input type="submit" id="add" class="btn btn-primary" value="Cadastrar"></input>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <header>
+
+        <nav>
+
+            <img src="assets/img/logo2.png" id="logo" alt="">
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cardapio.html">Cardapio</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="pedido.html">Pedido</a></li>
+
+            </ul>
+
+
+            <div class="botoes">
+                <button>
+                    Pedir agora
+                    <a class="fas fa-shopping-cart me-2" href=""></a>
+                </button>
+
+                <button>
+                    Log-in
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1 class="tituloSecao">Cardápio</h1>
+
+
+
+            <input type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formCadastroProd"
+                value="Cadastrar Produto">
+            </input>
+
+
+            <div id="cardapio"></div>
+            
+
+
+
+
+        </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
