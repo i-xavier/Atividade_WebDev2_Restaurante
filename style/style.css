@@ -1,820 +1,789 @@
-/*
-*{
-    padding: 0;
-    margin: 0;
+/* ==========================================================
+   GERAL
+   Estilos que valem para a página inteira
+   ========================================================== */
+
+/* Faz o width e o height incluírem o padding e a borda.
+   Assim o tamanho dos elementos fica mais fácil de calcular. */
+* {
     box-sizing: border-box;
 }
 
-:root {
-    --cor0: #B9A6DE;
-    --cor1: #F5D998;
-    --cor2: #5B4B7A;
-    --cor3: #F0938A;
-    --cor4: #FAF6ED;
-    --cor5: #f3ac06;Z
+/* Estilo base da página: fonte, cor do texto e fundo creme.
+   O display flex em coluna com min-height deixa o rodapé sempre no final da tela. */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FAF6ED;
+    color: #5B4B7A;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1{
-    text-align: center;
-}
-
-.tituloSecao {
-    font-size: 50px;
-    font-weight: bold;
-    color: var(--cor3);
-    position: relative;
-    text-shadow: #000 2px 2px;
-
-}
-
-#logo{
-    width: 70px;
-    
-}
-
-header {
+/* Conteúdo principal: centralizado, com largura máxima e espaço nas bordas.
+   O flex: 1 faz ele ocupar o espaço livre e empurrar o rodapé para baixo. */
+main {
+    flex: 1;
+    max-width: 1200px;
     width: 100%;
-    position: fixed;
-    background-color: var(--cor2);
-    
-    align-items: center;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Links sem sublinhado e com a mesma cor do texto ao redor */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Imagens nunca passam da largura do elemento onde estão */
+img {
+    max-width: 100%;
+}
+
+/* Rodapé: faixa roxa com uma borda coral em cima */
+footer {
+    height: 50px;
+    background-color: #5B4B7A;
+    border-top: 4px solid #F0938A;
+}
+
+/* ==========================================================
+   HEADER (cabeçalho e menu)
+   ========================================================== */
+
+/* Cabeçalho roxo que fica fixo no topo quando a página rola (sticky).
+   O z-index garante que ele fique na frente dos outros elementos. */
+header {
+    background-color: #5B4B7A;
+    border-bottom: 4px solid #F0938A;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Barra de navegação: logo, menu e botão do carrinho lado a lado (flex),
+   alinhados no meio e com um espaço entre eles (gap) */
+header nav {
+    max-width: 1200px;
+    height: 70px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Tamanho da logo */
+#logo {
+    height: 48px;
+}
+
+/* Lista do menu: tira as bolinhas e coloca os itens em linha.
+   A margem direita automática empurra o botão do carrinho para o canto direito. */
+header nav ul {
+    list-style: none;
+    margin: 0 auto 0 0;
     padding: 0;
-    z-index: 99;
-    
-    
-    
-}
-
-nav {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 16x 20px;
-    
-    
-
-    ul {
-        display: flex;
-        list-style-type:  none;
-        gap: 50px;
-    }
-
-    li a{
-        text-decoration: none;
-        color: var(--cor4);
-        font-weight: bold;
-    }
+    gap: 10px;
 }
 
-.botoes{
+/* Links do menu (Home e Cardápio): texto claro e formato arredondado */
+header nav ul li a {
+    color: #FAF6ED;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* Quando o mouse passa por cima, o link ganha um fundo claro transparente */
+header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Botão do carrinho no cabeçalho: amarelo, arredondado, com cursor de mãozinha */
+.botoes button {
+    background-color: #F5D998;
+    color: #3C3152;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Botão do carrinho fica âmbar no hover */
+.botoes button:hover {
+    background-color: #f3ac06;
+}
+
+/* Tira a margem que o Bootstrap (me-2) coloca no ícone do carrinho */
+.botoes button i {
+    margin: 0 !important;
+}
+
+/* ==========================================================
+   TÍTULOS E BOTÕES
+   ========================================================== */
+
+/* Seção principal de cada página: elementos em coluna com espaço entre eles */
+#home {
     display: flex;
-    align-items: center;
-    
-    
+    flex-direction: column;
+    gap: 20px;
 }
 
-#preview{
-    width: 200px;
-    height: 200px;
+/* Título grande de cada página, com uma sombra coral atrás do texto */
+.tituloSecao {
+    margin: 0;
+    font-size: 50px;
+    color: #3C3152;
+    text-shadow: 3px 3px 0 #F0938A;
+}
+
+/* Base dos botões do Bootstrap: negrito, arredondado e texto escuro */
+.btn-primary,
+.btn-secondary {
+    font-weight: bold;
+    border-radius: 20px;
+    color: #3C3152;
+}
+
+/* Botão principal (Cadastrar Produto, Fechar pedido...): cor coral */
+.btn-primary {
+    background-color: #F0938A;
+    border-color: #F0938A;
+}
+
+/* Botão principal muda para âmbar ao passar o mouse, clicar ou receber foco */
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #f3ac06;
+    border-color: #f3ac06;
+    color: #3C3152;
+}
+
+/* Botão secundário (Close): cor lilás */
+.btn-secondary {
+    background-color: #B9A6DE;
+    border-color: #B9A6DE;
+}
+
+/* Botão secundário muda para amarelo ao passar o mouse, clicar ou receber foco */
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #F5D998;
+    border-color: #F5D998;
+    color: #3C3152;
+}
+
+/* Botões direto dentro da seção não esticam, ficam do tamanho do texto, à esquerda */
+#home > .btn-primary {
+    align-self: flex-start;
+}
+
+/* ==========================================================
+   CARDÁPIO
+   ========================================================== */
+
+/* Grade de cards: colunas automáticas de no mínimo 240px.
+   Quando a tela diminui, o número de colunas diminui junto. */
+#cardapio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* Card de cada produto: coluna com borda lilás, cantos arredondados e sombra embaixo.
+   O overflow hidden corta a imagem nos cantos arredondados. */
+#cardapio .cardProd {
+    background-color: #FAF6ED;
+    border: 2px solid #B9A6DE;
+    border-radius: 15px;
+    box-shadow: 0 5px 0 #B9A6DE;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* A borda do card fica coral ao passar o mouse */
+#cardapio .cardProd:hover {
+    border-color: #F0938A;
+}
+
+/* Cada parte do card (imagem, nome, descrição...) é um span.
+   Aqui eles viram blocos com espaço nas laterais. */
+#cardapio .cardProd > span {
+    display: block;
+    padding: 0 15px;
+}
+
+/* O primeiro span é a imagem, que ocupa a largura toda, sem espaço nas laterais */
+#cardapio .cardProd > span:first-child {
+    padding: 0;
+}
+
+/* Imagem do produto: largura total, altura fixa e recortada sem distorcer (cover).
+   Também é usada na miniatura do carrinho. */
+.imgProd {
+    width: 100%;
+    height: 180px;
     object-fit: cover;
 }
 
-#home{
-    padding-top: 70px;
-    background-position: center;
-    background-image: url(/img/bg.jpeg);
-    background-size: cover;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-
-    h1{
-        margin-top: 40px;
-        align-items: center;
-        font-size: 90px;
-        color: var(--cor1)
-    }
-
-    p{
-        margin-top: 500px;
-    }
+/* Nome do produto */
+.nomeCardProd {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C3152;
 }
 
-#menu{
-
-    width: 100%;
-}
-
-#localizacao{
-    
-
-    img{
-        width: 400px;
-    }
-}
-
-@media (max-width: 1024px) {
-    
-}*/
-
-/* 
-
-/* ==========================================================================
-   1. VARIÁVEIS E RESET GLOBAL
-   ========================================================================== */
-:root {
-  --cor0: #B9A6DE; /* Lilás suave */
-  --cor1: #F5D998; /* Amarelo pastel */
-  --cor2: #5B4B7A; /* Roxo escuro */
-  --cor3: #F0938A; /* Coral / Rosa */
-  --cor4: #FAF6ED; /* Off-white / Creme */
-  --cor5: #f3ac06; /* Amarelo ouro */
-
-  --bg-color: var(--cor4);
-  --text-dark: var(--cor2);
-  --text-muted: #7a6a99;
-  --text-light: #ffffff;
-  --border-color: #e5dccb;
-  --shadow: 0 4px 15px rgba(91, 75, 122, 0.08);
-  --shadow-hover: 0 8px 25px rgba(91, 75, 122, 0.18);
-  --radius: 12px;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-dark);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
-/* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO
-   ========================================================================== */
-header {
-  background-color: var(--cor2);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.8rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#logo {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-}
-
-nav ul li a {
-  color: var(--cor4);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-nav ul li a:hover {
-  color: var(--cor1);
-}
-
-.botoes {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-}
-
-.botoes button {
-  background-color: var(--cor5);
-  color: var(--cor2);
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
-}
-
-.botoes button:hover {
-  background-color: var(--cor1);
-  transform: translateY(-2px);
-}
-
-.botoes a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* ==========================================================================
-   3. SEÇÕES E CONTEÚDO PRINCIPAL
-   ========================================================================== */
-#home {
-  max-width: 1200px;
-  margin: 2.5rem auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.tituloSecao {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--cor2);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-#home p {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
-}
-
-/* ==========================================================================
-   4. CARROSSEL DE DESTAQUES (HOME / INDEX)
-   ========================================================================== */
-#home .container {
-  position: relative;
-  padding: 0 3rem;
-  margin-top: 2rem;
-}
-
-/* Botões de Navegação (Setas) */
-#home .container > button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--cor2);
-  color: var(--cor4);
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow);
-  transition: all 0.2s ease;
-}
-
-#home .container > button:hover {
-  background-color: var(--cor5);
-  color: var(--cor2);
-  transform: translateY(-50%) scale(1.1);
-}
-
-#home .container > .fa-arrow-left {
-  left: 0;
-}
-
-#home .container > .fa-arrow-right {
-  right: 0;
-}
-
-/* Wrapper com barra de rolagem oculta e rolagem suave */
-.carrossel-wrapper {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 1rem 0.5rem;
-  scrollbar-width: none; /* Firefox */
-}
-
-.carrossel-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari e Edge */
-}
-
-/* Container flex dos cards no carrossel */
-#carrossel {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 1.5rem;
-}
-
-/* Card individual dentro do carrossel */
-#carrossel .cardProd {
-  flex: 0 0 240px; /* Largura fixa para os cards no carrossel */
-  min-width: 240px;
-  text-align: left;
-}
-
-.imgCarrossel {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.nomeCarrossel {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--cor2);
-  margin-bottom: 0.3rem;
-  display: block;
-}
-
-.precoCarrossel {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--cor5);
-  margin-bottom: 0.8rem;
-  display: block;
-}
-
-.precoCarrossel::before {
-  content: "R$ ";
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.botoesCarrossel {
-  display: flex;
-  justify-content: flex-end;
-  border-top: 1px solid var(--border-color);
-  padding-top: 0.75rem;
-  margin-top: auto;
-}
-
-.botoesCarrossel .fa-shopping-cart {
-  background-color: var(--cor5);
-  color: var(--cor2);
-  padding: 0.6rem 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.botoesCarrossel .fa-shopping-cart:hover {
-  background-color: var(--cor1);
-  transform: scale(1.1);
-}
-
-/* ==========================================================================
-   5. CARDÁPIO (GRID DE PRODUTOS)
-   ========================================================================== */
-#cardapio {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-  text-align: left;
-}
-
-.cardProd {
-  background: #ffffff;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 1.25rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.cardProd:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-}
-
-.cardProd > span:first-child {
-  width: 100%;
-  height: 180px;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--cor4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cardProd > span:first-child img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.cardProd:hover > span:first-child img {
-  transform: scale(1.05);
-}
-
-.imgCardProd {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--cor2);
-  margin-bottom: 0.4rem;
-  display: block;
-}
-
+/* Descrição do produto. O flex: 1 ocupa o espaço que sobrar,
+   assim o preço e os botões ficam sempre no fim do card. */
 .descricaoCardProd {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-  margin-bottom: 1.2rem;
-  flex-grow: 1;
-  display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    flex: 1;
 }
 
-.precoCardProd {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--cor5);
-  margin-bottom: 1rem;
-  display: block;
+/* Preço em forma de etiqueta amarela */
+#cardapio .cardProd > .precoCardProd {
+    align-self: flex-start;
+    margin: 10px 0 0 15px;
+    padding: 2px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #F5D998;
+    color: #3C3152;
+    border-radius: 20px;
 }
 
+/* Escreve "R$ " antes do preço (o JavaScript só coloca o número) */
 .precoCardProd::before {
-  content: "R$ ";
-  font-size: 1rem;
-  font-weight: 700;
+    content: "R$ ";
 }
 
-.categoriaCardProd {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: var(--cor4);
-  color: var(--cor2);
-  border: 1px solid var(--cor0);
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-}
-
+/* Área dos botões (editar, excluir, carrinho): ícones alinhados à direita.
+   O !important é para ganhar da regra dos spans que está lá em cima. */
 .botoesCardProd {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: flex-end;
-  border-top: 1px solid var(--border-color);
-  padding-top: 1rem;
-  margin-top: auto;
+    display: flex !important;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 10px;
+    padding-bottom: 15px !important;
 }
 
-.botoesCardProd i {
-  font-size: 1rem;
-  padding: 0.6rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* Ícones de ação: círculos clicáveis.
+   Vale para os ícones do card do cardápio e para a lixeira do item do carrinho. */
+.botoesCardProd i,
+.botoesCardItemCarrinho > i {
+    width: 38px;
+    height: 38px;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #e6def3;
+    color: #3C3152;
+    cursor: pointer;
 }
 
-.botoesCardProd .fa-edit {
-  background-color: var(--cor4);
-  color: var(--cor2);
-  border: 1px solid var(--border-color);
-}
-
+/* Ícone de editar fica amarelo no hover */
 .botoesCardProd .fa-edit:hover {
-  background-color: var(--cor0);
-  color: #ffffff;
-  transform: scale(1.1);
+    background-color: #F5D998;
 }
 
-.botoesCardProd .fa-trash-alt {
-  background-color: #fde8e6;
-  color: var(--cor3);
+/* Ícone de excluir fica coral no hover (cardápio e carrinho) */
+.botoesCardProd .fa-trash-alt:hover,
+.botoesCardItemCarrinho > .fa-trash-alt:hover {
+    background-color: #F0938A;
 }
 
-.botoesCardProd .fa-trash-alt:hover {
-  background-color: var(--cor3);
-  color: #ffffff;
-  transform: scale(1.1);
-}
-
+/* Ícone de adicionar ao carrinho já é coral, para se destacar dos outros */
 .botoesCardProd .fa-shopping-cart {
-  background-color: var(--cor5);
-  color: var(--cor2);
-  margin-left: auto;
-  padding: 0.65rem 0.8rem;
-  border-radius: 8px;
+    background-color: #F0938A;
 }
 
+/* Ícone do carrinho fica âmbar no hover */
 .botoesCardProd .fa-shopping-cart:hover {
-  background-color: var(--cor1);
-  transform: scale(1.05);
+    background-color: #f3ac06;
 }
 
-/* ==========================================================================
-   6. TELA DE CARRINHO DE COMPRAS (#carrinho)
-   ========================================================================== */
-#carrinho {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  max-width: 900px;
-  margin: 2.5rem auto 0 auto;
-  text-align: left;
+/* ==========================================================
+   CARROSSEL (página inicial)
+   ========================================================== */
+
+/* Container do carrossel. O position relative serve para as setas
+   serem posicionadas em cima dele. */
+#home .container {
+    position: relative;
+    max-width: 100%;
+    padding: 0;
 }
 
-.cardItemCarrinho {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Janela do carrossel: rola na horizontal e esconde a barra de rolagem.
+   A navegação é feita pelas setas (o JavaScript usa scrollBy). */
+.carrossel-wrapper {
+    overflow-x: auto;
+    padding: 10px 0 15px;
+    scrollbar-width: none;
 }
 
-.cardItemCarrinho:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+/* Esconde a barra de rolagem no Chrome e no Safari */
+.carrossel-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
-.cardItemCarrinho > span:first-child {
-  width: 100px;
-  height: 100px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--cor4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Faixa que mantém todos os slides em uma linha só.
+   O width max-content deixa a faixa do tamanho de todos os slides juntos. */
+#carrossel {
+    display: flex;
+    gap: 20px;
+    width: max-content;
 }
 
-.cardItemCarrinho .imgProd {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.imgCardItemCarrinho {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--cor2);
-  flex: 2;
-}
-
-.descricaoCardItemCarrinho {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  flex: 3;
-}
-
-.precoCardItemCarrinho {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--cor5);
-  flex: 1.5;
-  text-align: right;
-}
-
-.precoCardItemCarrinho::before {
-  content: "R$ ";
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.categoriaCardItemCarrinho {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: var(--cor4);
-  color: var(--cor2);
-  border: 1px solid var(--cor0);
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-}
-
-.botoesCardItemCarrinho {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-left: auto;
-}
-
-.controlQtdCardItemCarrinho {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  background-color: var(--cor4);
-  border: 1px solid var(--cor0);
-  padding: 0.3rem 0.75rem;
-  border-radius: 20px;
-  font-weight: 700;
-  color: var(--cor2);
-}
-
-.controlQtdCardItemCarrinho i {
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: var(--cor2);
-  padding: 0.2rem;
-  transition: color 0.2s ease, transform 0.1s ease;
-}
-
-.controlQtdCardItemCarrinho i:hover {
-  color: var(--cor5);
-  transform: scale(1.2);
-}
-
-.controlQtdCardItemCarrinho span {
-  min-width: 20px;
-  text-align: center;
-}
-
-.botoesCardItemCarrinho .fa-trash-alt {
-  color: var(--cor3);
-  font-size: 1.1rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.botoesCardItemCarrinho .fa-trash-alt:hover {
-  background-color: #fde8e6;
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-  .cardItemCarrinho {
+/* Slide do carrossel: largura fixa de 240px que não encolhe (flex: 0 0 240px).
+   O visual é igual ao card do cardápio. */
+#carrossel .cardProd {
+    flex: 0 0 240px;
+    background-color: #FAF6ED;
+    border: 2px solid #B9A6DE;
+    border-radius: 15px;
+    box-shadow: 0 5px 0 #B9A6DE;
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-  }
+}
 
-  .precoCardItemCarrinho {
-    text-align: left;
-  }
+/* Partes do slide com espaço nas laterais */
+#carrossel .cardProd > span {
+    display: block;
+    padding: 0 15px;
+}
 
-  .botoesCardItemCarrinho {
+/* A imagem ocupa a largura toda do slide */
+#carrossel .cardProd > span:first-child {
+    padding: 0;
+}
+
+/* Imagem do slide */
+.imgCarrossel {
     width: 100%;
-    justify-content: space-between;
-  }
+    height: 160px;
+    object-fit: cover;
 }
 
-/* ==========================================================================
-   7. FORMULÁRIO DE LOGIN E MODAIS
-   ========================================================================== */
-#formLogin {
-  background: #ffffff;
-  padding: 2.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 420px;
-  margin: 0 auto;
-  text-align: left;
-  border: 1px solid var(--border-color);
+/* Nome do prato no slide */
+.nomeCarrossel {
+    margin-top: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #3C3152;
 }
 
-#formLogin label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-  display: block;
-  color: var(--cor2);
+/* Preço do slide, em etiqueta amarela */
+#carrossel .cardProd > .precoCarrossel {
+    align-self: flex-start;
+    margin: 8px 0 0 15px;
+    padding: 2px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #F5D998;
+    color: #3C3152;
+    border-radius: 20px;
 }
 
-#formLogin input[type="email"],
-#formLogin input[type="password"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1.2rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: var(--cor4);
+/* Escreve "R$ " antes do preço do slide */
+.precoCarrossel::before {
+    content: "R$ ";
 }
 
-#formLogin input[type="email"]:focus,
-#formLogin input[type="password"]:focus {
-  outline: none;
-  border-color: var(--cor0);
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(185, 166, 222, 0.3);
+/* Área do botão do carrinho no slide, alinhada à direita */
+.botoesCarrossel {
+    display: flex !important;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding-bottom: 15px !important;
 }
 
-#formLogin input[type="submit"]:not(.btn) {
-  background-color: var(--cor2);
-  color: var(--cor4);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 700;
-  width: 100%;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+/* Botão (ícone) de adicionar ao carrinho no slide: círculo coral */
+.botoesCarrossel i {
+    width: 38px;
+    height: 38px;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #F0938A;
+    color: #3C3152;
+    cursor: pointer;
 }
 
-#formLogin input[type="submit"]:not(.btn):hover {
-  background-color: var(--cor5);
-  color: var(--cor2);
+/* Fica âmbar no hover */
+.botoesCarrossel i:hover {
+    background-color: #f3ac06;
 }
 
-/* Modais Bootstrap */
+/* Setas de anterior e próximo: botões redondos âmbar por cima do carrossel.
+   O position absolute com top 45% coloca as setas mais ou menos no meio da altura. */
+#home .container > button.fa-arrow-left,
+#home .container > button.fa-arrow-right {
+    position: absolute;
+    top: 45%;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 3px solid #FAF6ED;
+    border-radius: 50%;
+    background-color: #f3ac06;
+    color: #3C3152;
+    cursor: pointer;
+}
+
+/* Seta esquerda: um pouco para fora do lado esquerdo */
+#home .container > button.fa-arrow-left {
+    left: -10px;
+}
+
+/* Seta direita: um pouco para fora do lado direito */
+#home .container > button.fa-arrow-right {
+    right: -10px;
+}
+
+/* As setas ficam amarelas ao passar o mouse */
+#home .container > button.fa-arrow-left:hover,
+#home .container > button.fa-arrow-right:hover {
+    background-color: #F5D998;
+}
+
+/* ==========================================================
+   CARRINHO
+   ========================================================== */
+
+/* Texto "Subtotal:". A margem negativa em baixo aproxima ele do valor. */
+#home > label {
+    font-weight: bold;
+    margin: 0 0 -15px;
+}
+
+/* Parágrafos da seção um pouco maiores */
+#home > p {
+    font-size: 18px;
+}
+
+/* O parágrafo logo depois do "Subtotal:" é o valor.
+   Ele aparece grande, dentro de uma etiqueta amarela. */
+#home > label + p {
+    align-self: flex-start;
+    padding: 2px 18px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #3C3152;
+    background-color: #F5D998;
+    border-radius: 20px;
+}
+
+/* Lista dos itens do carrinho: um card embaixo do outro */
+#carrinho {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Card de um item do carrinho: grade com 5 colunas
+   (imagem, nome, descrição, preço e botões) */
+.cardItemCarrinho {
+    display: grid;
+    grid-template-columns: 110px 1fr 1.5fr auto auto;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 20px 12px 12px;
+    background-color: #FAF6ED;
+    border: 2px solid #B9A6DE;
+    border-radius: 15px;
+    box-shadow: 0 5px 0 #B9A6DE;
+}
+
+/* Miniatura da imagem no carrinho */
+.cardItemCarrinho .imgProd {
+    width: 110px;
+    height: 90px;
+    border-radius: 10px;
+}
+
+/* Nome do item. No cart.js o nome usa a classe imgCardItemCarrinho,
+   por isso as duas classes estão aqui. */
+.imgCardItemCarrinho,
+.nomeCardItemCarrinho {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C3152;
+}
+
+/* Descrição do item */
+.descricaoCardItemCarrinho {
+    font-size: 14px;
+}
+
+/* Preço do item */
+.precoCardItemCarrinho {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3152;
+}
+
+/* Escreve "R$ " antes do preço do item */
+.precoCardItemCarrinho::before {
+    content: "R$ ";
+}
+
+/* Área dos botões do item: lixeira e controle de quantidade lado a lado */
+.botoesCardItemCarrinho {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Controle de quantidade: caixinha arredondada que agrupa os botões e o número */
+.controlQtdCardItemCarrinho {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px;
+    background-color: #e6def3;
+    border-radius: 20px;
+}
+
+/* Botões de + e -: círculos âmbar pequenos */
+.controlQtdCardItemCarrinho i {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f3ac06;
+    color: #3C3152;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Botões de + e - ficam amarelos no hover */
+.controlQtdCardItemCarrinho i:hover {
+    background-color: #F5D998;
+}
+
+/* No JavaScript os elementos são criados na ordem + número -.
+   A propriedade order muda a ordem na tela para - número + */
+.controlQtdCardItemCarrinho .fa-minus {
+    order: 1;
+}
+
+.controlQtdCardItemCarrinho > span {
+    order: 2;
+    font-weight: bold;
+    color: #3C3152;
+}
+
+.controlQtdCardItemCarrinho .fa-plus {
+    order: 3;
+}
+
+/* Botão "Limpar Carrinho" à esquerda, sem esticar */
+#limpar-carrinho {
+    align-self: flex-start;
+}
+
+/* ==========================================================
+   MODAIS (cadastro de produto e finalizar pedido)
+   ========================================================== */
+
+/* Janela do modal com as cores do site */
 .modal-content {
-  border-radius: var(--radius);
-  border: none;
-  box-shadow: var(--shadow);
-  background-color: #ffffff;
+    background-color: #FAF6ED;
+    color: #5B4B7A;
+    border: 2px solid #B9A6DE;
+    border-radius: 15px;
 }
 
-.modal-header {
-  background-color: var(--cor2);
-  color: var(--cor4);
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
+/* Título do modal */
+.modal-title {
+    color: #3C3152;
 }
 
-.modal-header .btn-close {
-  filter: invert(1);
-}
-
+/* Rótulos dos campos (Nome, Preço...): em negrito, um em cada linha */
 .modal-body label {
-  font-weight: 600;
-  color: var(--cor2);
-  margin-top: 0.6rem;
-  display: inline-block;
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
 }
 
+/* Campos de formulário: largura total, fundo lilás claro e borda arredondada */
 .modal-body input[type="text"],
-.modal-body input[type="email"],
-.modal-body input[type="password"],
 .modal-body input[type="number"],
 .modal-body select,
 .modal-body textarea {
-  width: 100%;
-  padding: 0.65rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.8rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  background-color: var(--cor4);
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #e6def3;
+    border: 2px solid #B9A6DE;
+    border-radius: 8px;
 }
 
-.modal-body input:focus,
-.modal-body select:focus,
-.modal-body textarea:focus {
-  outline: none;
-  border-color: var(--cor0);
-  background-color: #ffffff;
+/* Campo de descrição mais alto que os outros */
+.modal-body textarea {
+    min-height: 90px;
 }
 
-.btn-primary {
-  background-color: var(--cor5) !important;
-  border-color: var(--cor5) !important;
-  color: var(--cor2) !important;
-  font-weight: 700;
+/* Mensagem de erro do formulário (ex: campos vazios).
+   O white-space pre-line respeita as quebras de linha do texto. */
+#msg {
+    padding: 8px 12px;
+    white-space: pre-line;
+    color: #3C3152 !important;
+    background-color: #fbdad7;
+    border-left: 5px solid #F0938A;
 }
 
-.btn-primary:hover {
-  background-color: var(--cor1) !important;
-  border-color: var(--cor1) !important;
+/* Se não tem mensagem, a faixa de erro some */
+#msg:empty {
+    display: none;
 }
 
-.btn-secondary {
-  background-color: var(--cor2) !important;
-  border-color: var(--cor2) !important;
-  color: var(--cor4) !important;
-}
-
+/* Pré-visualização da imagem escolhida, com borda tracejada */
 #preview {
-  display: block;
-  max-width: 100%;
-  max-height: 150px;
-  margin: 0.8rem auto;
-  border-radius: 8px;
-  object-fit: cover;
+    width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    object-fit: cover;
+    border: 2px dashed #B9A6DE;
+    border-radius: 8px;
 }
 
-/* ==========================================================================
-   8. RODAPÉ
-   ========================================================================== */
-footer {
-  background-color: var(--cor2);
-  height: 60px;
-  margin-top: auto;
+/* Se nenhuma imagem foi escolhida (src vazio), a pré-visualização some */
+#preview[src=""],
+#preview:not([src]) {
+    display: none;
+}
+
+/* Resumo dos itens do pedido dentro do modal "Pedido" */
+#itensCarrinho {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e6def3;
+    border-radius: 8px;
+}
+
+/* Se o resumo estiver vazio, a caixa não aparece */
+#itensCarrinho:empty {
+    display: none;
+}
+
+/* Cada linha do resumo: nome (ocupa o espaço que sobra), quantidade e preço */
+.listaItensPedido {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 15px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #B9A6DE;
+}
+
+/* Nome e preço do item no resumo em negrito */
+.nomeItemPedido,
+.precoItemPedido {
+    font-weight: bold;
+    color: #3C3152;
+}
+
+/* Escreve "x" antes da quantidade */
+.qtdItemPedido::before {
+    content: "x";
+}
+
+/* Escreve "R$ " antes do preço do item no resumo */
+.precoItemPedido::before {
+    content: "R$ ";
+}
+
+/* Total do pedido (subtotal mais taxa de entrega), em fonte grande */
+#totalPedido {
+    font-size: 35px;
+    color: #3C3152;
+}
+
+/* Escreve "R$ " antes do total, em letra menor */
+#totalPedido::before {
+    content: "R$ ";
+    font-size: 20px;
+}
+
+/* ==========================================================
+   MENSAGENS DE LISTA VAZIA
+   ========================================================== */
+
+/* Se o cardápio não tem nenhum produto, mostra um aviso.
+   O :empty só funciona quando a div não tem nada dentro. */
+#cardapio:empty::before {
+    content: "Nenhum produto cadastrado ainda. Clique em \"Cadastrar Produto\" para começar.";
+    grid-column: 1 / -1;
+}
+
+/* Se o carrinho não tem nenhum item, mostra um aviso */
+#carrinho:empty::before {
+    content: "Seu carrinho está vazio. Escolha algo no cardápio.";
+}
+
+/* ==========================================================
+   RESPONSIVO (ajustes para telas menores)
+   ========================================================== */
+
+/* Tablets (até 860px): o card do item do carrinho passa a ter uma coluna só */
+@media (max-width: 860px) {
+    .cardItemCarrinho {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Celulares (até 640px): cabeçalho, título e cardápio ficam menores */
+@media (max-width: 640px) {
+    header nav {
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    #logo {
+        height: 38px;
+    }
+
+    header nav ul li a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .botoes button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .tituloSecao {
+        font-size: 36px;
+    }
+
+    /* Cardápio com uma coluna só */
+    #cardapio {
+        grid-template-columns: 1fr;
+    }
 }

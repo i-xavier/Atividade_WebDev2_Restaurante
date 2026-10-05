@@ -1,13 +1,12 @@
 import Repositorio from "../repositories/repositorio.js";
-import Carrinho from "../script/carrinho.js";
-import ItemCarrinho from "../script/itemCarrinho.js";
-import Pedido from "../script/pedido.js";
-import Produto from "../script/produto.js";
-import Usuario from "../script/usuario.js";
-import { adicionarItemNoCarrinho } from "./cart.js";
 
+
+// Repositório: acesso aos produtos e ao carrinho (localStorage).
 const bd = new Repositorio();
+// Estas referências (form, nomeProd... preview) são do formulário de cadastro do cardápio
+// e não existem nesta página; não são usadas aqui.
 const form = document.getElementById("formCadastroProd");
+// Container (#carrossel) onde os slides são inseridos.
 const carrossel = document.getElementById("carrossel");
 const nomeProd = document.getElementById("inNomeProd");
 const descricaoProd = document.getElementById("inDescricaoProd");
@@ -16,6 +15,8 @@ const categoriaProd = document.getElementById("inCategoriaProd");
 const imagemProd = document.getElementById("inImagemProd");
 const preview = document.getElementById("preview");
 
+// Quando a página carrega, lê os produtos salvos e cria um slide para cada um.
+// Só nome, preço e imagem são usados; descrição e categoria ficam de fora.
 document.addEventListener('DOMContentLoaded', () => {
 
     const listaProdutos = bd.getProdutos();
@@ -27,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const adicionarProdCarrossel = function (id, nome, /*descricao,*/ preco, /*categoria,*/ img) {
+// Monta o slide de um produto: imagem, nome, preço e botão de carrinho, e o adiciona ao carrossel. É uma versão reduzida do card do cardápio.
+const adicionarProdCarrossel = function (id, nome, preco, img) {
+    // Card (div) do slide; o id do elemento é o id do produto.
     const cardProd = document.createElement("div");
     cardProd.classList.add("cardProd");
     cardProd.id = id;
@@ -43,32 +46,29 @@ const adicionarProdCarrossel = function (id, nome, /*descricao,*/ preco, /*categ
     nomeSpan.classList.add("nomeCarrossel");
     nomeSpan.appendChild(nomeContent);
 
-    /*const descricaoSpan = document.createElement("span");
-    const descricaoContent = document.createTextNode(descricao);
-    descricaoSpan.classList.add("descricaoCardProd")
-    descricaoSpan.appendChild(descricaoContent);*/
-
     const precoSpan = document.createElement("span");
     const precoContent = document.createTextNode(preco);
     precoSpan.classList.add("precoCarrossel")
     precoSpan.appendChild(precoContent);
 
-    /*const categoriaSpan = document.createElement("span");
-    const categoriaContent = document.createTextNode(categoria);
-    categoriaSpan.classList.add("categoriaCardProd")
-    categoriaSpan.appendChild(categoriaContent);*/
-
     const botoesSpan = document.createElement("span");
     botoesSpan.classList.add("botoesCarrossel")
 
+    // Botão (ícone) que adiciona o produto ao carrinho direto do carrossel.
+    // Ao clicar: busca o produto no repositório, adiciona ao carrinho e avisa o usuário com alert
     const botaoAddCarrinho = document.createElement("i");
     botaoAddCarrinho.classList.add("fas", "fa-shopping-cart", "me-2")
 
     botaoAddCarrinho.addEventListener("click", function () {
-        bd.adicionarItemCarrinho(id);
-        const idItem = bd.getUltimoId();
-        console.log(idItem);
-        adicionarItemNoCarrinho(idItem, nome, descricao, preco, img);
+
+        const registroProduto = bd.buscarProduto(id);
+
+        if (registroProduto) {
+            bd.abrirCarrinho(registroProduto.produto);
+            alert(`${registroProduto.produto.nome} foi adicionado ao carrinho!`); // <- Adicione esta linha
+        } else {
+            console.log("Erro ao adicionar produto");
+        }
 
     })
 
@@ -76,16 +76,16 @@ const adicionarProdCarrossel = function (id, nome, /*descricao,*/ preco, /*categ
 
     cardProd.appendChild(imgSpan);
     cardProd.appendChild(nomeSpan);
-   // cardProd.appendChild(descricaoSpan);
     cardProd.appendChild(precoSpan);
-    //cardProd.appendChild(categoriaSpan);
     cardProd.appendChild(botoesSpan);
 
 
+    // Insere o slide pronto no carrossel.
     carrossel.appendChild(cardProd);
 
 }
 
+// Navegação por setas: as setas rolam o carrossel 
 const wrapper = document.querySelector('.carrossel-wrapper');
 document.querySelector('.fa-arrow-left')?.addEventListener('click', () => wrapper.scrollBy({ left: -260, behavior: 'smooth' }));
 document.querySelector('.fa-arrow-right')?.addEventListener('click', () => wrapper.scrollBy({ left: 260, behavior: 'smooth' }));
